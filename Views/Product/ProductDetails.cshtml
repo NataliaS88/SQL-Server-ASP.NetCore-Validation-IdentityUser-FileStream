@@ -1,0 +1,68 @@
+﻿@model Shop.Models.Product
+@{
+    ViewData["Title"] = "Product detalization";
+
+}
+
+
+<div>
+    <hr />
+    <div class="card text-center" style="        width: 550px;">
+        <div>
+            <h5>
+            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayFor(model => model.Title)
+            </h5>
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+            @Html.DisplayFor(model => model.ShortDescription)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.LongDescription)
+            @Html.DisplayFor(model => model.LongDescription)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayFor(model => model.Date)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayFor(model => model.Price) NIS
+        </div>
+        <div>
+            <h5>Seller name</h5>
+            @ViewBag.sellerName
+        </div>
+        <div>
+            <h5>Seller mail</h5>
+            @ViewBag.email
+        </div>
+        <div class="row">
+            <div class="col-4">
+
+                <img src="@Url.Content(Model.Image1)" style="height:100px; width: 100px" />
+                <div class="w-100"></div>
+                @Html.DisplayNameFor(model => model.Image1)
+
+            </div>
+            <div class="col-4">
+                <img src="@Url.Content(Model.Image2)" style="height:100px; width: 100px" />
+                <div class="w-100"></div>
+                @Html.DisplayNameFor(model => model.Image2)
+
+            </div>
+            <div class="col-4">
+                <img src="@Url.Content(Model.Image3)" style="height:100px; width: 100px" />
+                <div class="w-100"></div>
+                @Html.DisplayNameFor(model => model.Image3)
+
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "EditProduct", new { id = Model.Id }) |
+    <a asp-controller="Product" asp-action="GetAllProducts">Back to List</a>|
+    <a asp-action="AddToCart" asp-route-id="@Model.Id">Add to cart</a>
+</div>

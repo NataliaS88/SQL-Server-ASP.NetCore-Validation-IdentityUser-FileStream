@@ -1,0 +1,62 @@
+﻿
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to our shop</h1>
+</div>
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="imgOverlay"></div>
+            @if (ViewBag.p1 != null)
+            {
+                <img class="d-block w-100" src="@Url.Content(ViewBag.p1.Image1)" alt="First slide" style="height:500px; width: 500px">
+            }
+            @if (ViewBag.p1 == null)
+            {
+                <img class="d-block w-100" src="~/images/noImage.png" alt="First slide" style="height:500px; width: 500px">
+            }
+        </div>
+        <div class="carousel-item">
+            <div class="imgOverlay"></div>
+            @if (ViewBag.p2 != null)
+            {
+                <img class="d-block w-100" src="@Url.Content(ViewBag.p2.Image1)" alt="First slide" style="height:500px; width: 500px">
+            }
+            @if (ViewBag.p2 == null)
+            {
+                <img class="d-block w-100" src="~/images/noImage.png" alt="First slide" style="height:500px; width: 500px">
+            }
+        </div>
+        <div class="carousel-item">
+            <div class="imgOverlay"></div>
+            @if (ViewBag.p3 != null)
+            {
+                <img class="d-block w-100" src="@Url.Content(ViewBag.p3.Image1)" alt="First slide" style="height:500px; width: 500px">
+            }
+            @if (ViewBag.p3 == null)
+            {
+                <img class="d-block w-100" src="~/images/noImage.png" alt="First slide" style="height:500px; width: 500px">
+            }
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+

@@ -1,0 +1,21 @@
+﻿
+
+@{
+    ViewData["Title"] = "Logout";
+
+}
+
+    <div>
+        @if (@User.Identity.IsAuthenticated)
+        {<h1>Hello @User.Identity.Name</h1>}
+
+        @if (@User.Identity.IsAuthenticated == false)
+        {<h1>Hello @ViewBag.UserName</h1>}
+        <hr />
+        <a asp-controller="User" asp-action="Edit" class="btn btn-primary">Edit User</a>
+        <a asp-controller="User" asp-action="Logout" asp-route-id="@ViewBag.UserName" class="btn btn-primary">Logout</a>
+        
+    </div>
+
+
+

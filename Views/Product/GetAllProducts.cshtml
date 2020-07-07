@@ -1,0 +1,35 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Products in stock";
+
+}
+<div>
+    <h1>Our products</h1>
+    <a asp-action="ShopingCart" style="float:right; margin-right: 10%;" asp-controller="Product">Shopping Cart</a>
+    @if (Model.Count > 0)
+    {
+        <div>
+            <a asp-action="GetAllProducts" asp-controller="Product" asp-route-sort="by title">Sort by title</a>|
+            <a asp-action="GetAllProducts" asp-controller="Product" asp-route-sort="by date">Sort by date</a>
+        </div>
+    }
+</div>
+<div>
+
+    <div class="card-columns">
+        @if (Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                @await Component.InvokeAsync("Product", new { prod = item });
+            }
+        }
+        @if (Model.Count <= 0)
+        {
+            <div>No products!</div>
+        }
+
+    </div>
+</div>
+

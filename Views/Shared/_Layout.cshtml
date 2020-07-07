@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+
+    <link rel="stylesheet" href="~/css/pictureRollingStyles.css" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+</head>
+<body class="bg-dark">
+    <header>
+        <div style="float:right; margin-right: 10%; height:50px">
+            <img src="~/images/myLogo.jpg" alt="Site Logo" style="height:50px; width: 50px" />
+        </div>
+        <div class="text-white">@ViewData["Title"]</div>
+    </header>
+
+    <div class="container  bg-light ">
+        <div class="row">
+            <div class="col-9 bg-light ">
+                <main role="main" class="pb-3 bg-light " style="align-content:center;">
+                    @RenderBody()
+                </main>
+            </div>
+            <div class="col-3 bg">
+                <div class="row ">
+
+                    @await Component.InvokeAsync("Login")
+
+                </div>
+                <div class="row   ">
+                    <div class="col-12 bg-dark p-0">
+                        <h5 class=" text-white center">Site card</h5>
+                    </div>
+                    <div class="w-100"></div>
+                    <div>
+                        @if ((string)@ViewData["Title"] == "Products in stock")
+                        {
+                            <h5>Main page</h5>
+                        }
+                        @if ((string)@ViewData["Title"] != "Products in stock")
+                        {
+
+                            <a class=" text-dark" asp-area="" asp-controller="Product" asp-action="GetAllProducts">Main page</a>
+                        }
+                    </div>
+                    <div class="w-100"></div>
+                    <div>
+                        @if ((string)@ViewData["Title"] == "My shopping cart")
+                        {
+                            <h5>Shopping cart</h5>
+                        }
+                        @if ((string)@ViewData["Title"] != "My shopping cart")
+                        {
+                            <a class=" text-dark" asp-area="" asp-controller="Product" asp-action="ShopingCart">Shopping cart</a>
+                        }
+                    </div>
+                    <div class="w-100"></div>
+                    <div>
+                        @if ((string)@ViewData["Title"] == "Registration")
+                        {
+                            <h5>Registration</h5>
+                        }
+                        @if ((string)@ViewData["Title"] != "Registration")
+                        {
+                            <a class="text-dark" asp-area="" asp-controller="User" asp-action="Registration">Registration</a>
+                        }
+                    </div>
+                    <div class="w-100"></div>
+                    <div>
+
+                        @if (this.User.Identity.IsAuthenticated)
+                        {
+                            @if ((string)@ViewData["Title"] == "Adding Product")
+                            {
+                                <h5>Add new product</h5>
+                            }
+                            @if ((string)@ViewData["Title"] != "Adding Product")
+                            {
+                                <a class=" text-dark" asp-area="" asp-controller="Product" asp-action="AddNewProduct">Add new product</a>
+                            }
+                        }
+                        <div class="w-100"></div>
+                        <div>
+                            @*username="admin" password="Admin123!"*@
+                            @if (this.User.Identity.Name == "admin")
+                            {
+                                @if ((string)@ViewData["Title"] == "Products report"||(string)@ViewData["Title"] == "Users report")
+                                {
+                                    <h5>Reports</h5>
+                                }
+                                @if ((string)@ViewData["Title"] != "Products report"||(string)@ViewData["Title"] == "Users report")
+                                {
+                                    <a class=" text-dark" asp-area="" asp-controller="Product" asp-action="Report">Reports</a>
+
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="w-100"></div>
+                    <div>
+                        @if ((string)@ViewData["Title"] == "About us")
+                        {
+                            <h5>About Us</h5>
+                        }
+                        @if ((string)@ViewData["Title"] != "About us")
+                        {
+                            <a class=" text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">About Us</a>
+
+                        }
+                    </div>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - Shop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Natalia Salivon</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

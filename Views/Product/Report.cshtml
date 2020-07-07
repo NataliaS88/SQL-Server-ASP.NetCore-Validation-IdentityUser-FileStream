@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Products report";
+
+}
+
+<h2>
+    Products admin report
+</h2>
+<br />
+
+<h4>
+    Number products in DataBase:@ViewBag.CountProducts
+</h4>
+
+<div>
+    Sold Products:
+    @if (ViewBag.SoldProducts.Count > 0)
+    {
+        @foreach (var soldItem in ViewBag.SoldProducts)
+        {
+            <div>
+                <a asp-action="ProductDetails" asp-route-id="@soldItem.Id">@soldItem.Title</a>
+            </div>
+        }
+    }
+    @if (ViewBag.SoldProducts.Count < 0)
+    {
+        <div>No sold products</div>
+    }
+
+</div>
+
+<br />
+<div>
+    Products in stock:
+    @if (ViewBag.NotSoldProducts.Count > 0)
+    {
+        @foreach (var notsoldItem in ViewBag.NotSoldProducts)
+        {
+            <div>
+                <a asp-action="ProductDetails" asp-route-id="@notsoldItem.Id">@notsoldItem.Title</a>
+            </div>
+        }
+    }
+    @if (ViewBag.NotSoldProducts.Count < 0)
+    {
+        <div>No products in stock</div>
+    }
+</div>
+
+<br />
+<div>
+    <a asp-controller="User" asp-action="Report">User report</a>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Main page</a>
+</div>

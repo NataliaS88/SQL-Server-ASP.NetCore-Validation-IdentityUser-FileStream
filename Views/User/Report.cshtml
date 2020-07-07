@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Users report";
+
+}
+
+<h2>
+    Users admin report
+</h2>
+<br />
+
+<h4>
+    Number  of registered users :@ViewBag.CountUsers
+</h4>
+
+<br />
+<div>
+    <a asp-controller="Product" asp-action="Report">Product report</a>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Main page</a>
+</div>
